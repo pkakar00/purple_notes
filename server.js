@@ -5,6 +5,8 @@ import path, { dirname } from 'path'
 import { engine } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
+import dotenv from "dotenv";
+dotenv.config();
 
 let loggedIn = false
 let email = ""
@@ -18,6 +20,7 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+console.log(process.env.DATABASE_PASSWORD);
 const connection = sql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
